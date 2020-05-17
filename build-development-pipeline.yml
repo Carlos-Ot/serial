@@ -12,8 +12,8 @@ name: $(Rev:r)
 
 variables:
   appBuildNumber: $(Build.BuildNumber)
-  outputDir: "./app/build/outputs/apk/"
-  debugDir: "debug/"
+  outputDir: './app/build/outputs/apk/'
+  debugDir: 'debug/'
 
 pool:
   vmImage: 'macos-latest'
@@ -29,7 +29,7 @@ steps:
 
 - script: |
     mv $(outputDir)$(debugDir)app-debug.apk $(outputDir)$(debugDir)app-debug-$(appBuildNumber).apk
-    mv $(outputDir)$(devDir)app-debug-$(appBuildNumber).apk $(outputDir)
+    mv $(outputDir)$(debugDir)app-debug-$(appBuildNumber).apk $(outputDir)
   displayName: 'Rename Generated Artifacts'
 
 
