@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 trigger:
-- development
+  - master
 
 pr: none
 
@@ -13,19 +13,19 @@ name: $(Rev:r)
 variables:
   appBuildNumber: $(Build.BuildNumber)
   outputDir: "./app/build/outputs/apk/"
-  debugDir: "debug/"
+  releaseDir: "release/"
 
 pool:
   vmImage: 'macos-latest'
 
 steps:
 - task: Gradle@2
-  displayName: 'Assemble Debug'
+  displayName: 'Assemble Release'
   inputs:
     gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
-    tasks: 'assembleDebug'
+    tasks: 'assembleRelease'
 
 - script: |
     mv $(outputDir)$(debugDir)app-debug.apk $(outputDir)$(debugDir)app-debug-$(appBuildNumber).apk
