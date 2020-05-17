@@ -20,59 +20,6 @@ pool:
   vmImage: 'macos-latest'
 
 steps:
-## KtLint Check
-#- script: |
-#    ./gradlew ktlint
-#  displayName: 'KtLint Check'
-#- task: CopyFiles@2
-#  displayName: 'Copy Ktlint Report'
-#  condition: failed()
-#  inputs:
-#    contents: '**/ktlint/*.html'
-#    targetFolder: '$(build.artifactStagingDirectory)'
-#    flattenFolders: true
-#
-## Detekt Check
-#- script: |
-#    ./gradlew detekt
-#  displayName: 'Detekt Check'
-#- task: CopyFiles@2
-#  displayName: 'Copy Detekt Report'
-#  inputs:
-#    contents: '**/detekt/*.html'
-#    targetFolder: '$(build.artifactStagingDirectory)'
-#    flattenFolders: true
-#
-## Publish Code Report Artifacts
-#- task: PublishBuildArtifacts@1
-#  displayName: 'Publish Report Artifacts'
-#  condition: failed()
-#  inputs:
-#    PathtoPublish: '$(build.artifactStagingDirectory)'
-#    ArtifactName: 'LintReport'
-#    publishLocation: 'Container'
-#
-## Build & Test Check
-#- task: Gradle@2
-#  displayName: 'Run Tests and Build App'
-#  inputs:
-#    workingDirectory: ''
-#    gradleWrapperFile: 'gradlew'
-#    gradleOptions: '-Xmx6144m'
-#    options: '-PappBuildNumber=$(appBuildNumber)'
-#    tasks: 'testDevDebugUnitTest assembleDebug'
-#    checkStyleRunAnalysis: false
-#    findBugsRunAnalysis: false
-#    pmdRunAnalysis: false
-#
-## Publish Test Results
-#- task: PublishTestResults@2
-#  displayName: 'Publish Test Results'
-#  inputs:
-#    testResultsFormat: 'JUnit'
-#    testResultsFiles: '**/TEST-*.xml'
-#    mergeTestResults: false
-#    failTaskOnFailedTests: true
 - task: Gradle@2
   inputs:
     workingDirectory: ''
