@@ -28,7 +28,7 @@ steps:
     tasks: 'assembleRelease'
 
 - script: |
-    mv $(outputDir)$(releaseDir)app-release.apk $(outputDir)$(releaseDir)app-release-$(appBuildNumber).apk
+    mv $(outputDir)$(releaseDir)app-release-unsigned.apk.apk $(outputDir)$(releaseDir)app-release-$(appBuildNumber).apk
     mv $(outputDir)$(releaseDir)app-release-$(appBuildNumber).apk $(outputDir)
   displayName: 'Rename Generated Artifacts'
 
