@@ -12,8 +12,8 @@ name: $(Rev:r)
 
 variables:
   appBuildNumber: $(Build.BuildNumber)
-  outputDir: "./app/build/outputs/apk/"
-  releaseDir: "release/"
+  outputDir: './app/build/outputs/apk/'
+  releaseDir: 'release/'
 
 pool:
   vmImage: 'macos-latest'
@@ -28,8 +28,8 @@ steps:
     tasks: 'assembleRelease'
 
 - script: |
-    mv $(outputDir)$(debugDir)app-debug.apk $(outputDir)$(debugDir)app-debug-$(appBuildNumber).apk
-    mv $(outputDir)$(devDir)app-debug-$(appBuildNumber).apk $(outputDir)
+    mv $(outputDir)$(releaseDir)app-release.apk $(outputDir)$(releaseDir)app-release-$(appBuildNumber).apk
+    mv $(outputDir)$(releaseDir)app-release-$(appBuildNumber).apk $(outputDir)
   displayName: 'Rename Generated Artifacts'
 
 
