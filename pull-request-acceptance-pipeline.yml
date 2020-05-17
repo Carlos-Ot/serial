@@ -3,8 +3,18 @@
 # Add steps that test, sign, and distribute the APK, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
-trigger:
-- master
+trigger: none
+
+pr:
+  branches:
+    include:
+      - master
+      - development
+
+name: $(Rev:r)
+
+variables:
+  appBuildNumber: $(Build.BuildNumber)
 
 pool:
   vmImage: 'macos-latest'
