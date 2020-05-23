@@ -1,2 +1,8 @@
 rootProject.name='Serial'
 include ':app'
+include ':data'
+include ':data-remote'
+include ':data-local'
+include ':domain'
+include ':presentation'
+include ':core'
