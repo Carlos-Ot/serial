@@ -2,16 +2,21 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+def versionBuild = appBuildNumber.replace(".", "").toInteger()
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
 
     defaultConfig {
         applicationId "com.ottoboni.serial"
-        minSdkVersion 26
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,13 +32,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.kotlin.stdlib
+    implementation project(":data")
 
-    implementation deps.support.appcompat
-    implementation deps.android_ktx.core_ktx
-    implementation deps.support.constraintlayout
+    implementation deps.kotlin
+    implementation deps.androidx
+    implementation deps.android_ui
 
-    testImplementation deps.junit
-    androidTestImplementation deps.android_testing.junit
-    androidTestImplementation deps.android_testing.espresso
+    testImplementation deps.testing
+    androidTestImplementation deps.android_testing
 }

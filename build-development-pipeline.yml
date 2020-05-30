@@ -23,6 +23,7 @@ steps:
   displayName: 'Assemble Debug'
   inputs:
     gradleWrapperFile: 'gradlew'
+    options: '-PappBuildNumber=$(appBuildNumber)'
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
     tasks: 'assembleDebug'
