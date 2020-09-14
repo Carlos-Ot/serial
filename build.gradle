@@ -7,12 +7,36 @@ buildscript {
         classpath deps.android_gradle_plugin
         classpath deps.kotlin_gradle_plugin
     }
+    repositories {
+        google()
+    }
 }
 
 allprojects {
     addRepos(repositories)
 }
 
+subprojects {
+    afterEvaluate { project ->
+        android {
+            compileSdkVersion build_versions.target_sdk
+            buildToolsVersion build_versions.build_tools
+
+            defaultConfig {
+                minSdkVersion build_versions.min_sdk
+                targetSdkVersion build_versions.target_sdk
+
+                testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                consumerProguardFiles 'consumer-rules.pro'
+            }
+        }
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+repositories {
+    google()
 }
